@@ -25,8 +25,204 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown data-separator="---">
+					### Bringing predictive models to production:
+					### Lessons learned!
+					Danu Pranantha
+
+					Team 2a
+					---
+					### Objectives
+					Share **lessons learned** when we brought our model to production
+					---
+					### Disclaimer
+					* Speaker is **NOT** a data scientist
+					* Speaker is **NEITHER** an IT architect **NOR** a software architect
+					---
+					### This talk is NOT about
+					* ~~Machine learning (ML) algorithms~~
+					* ~~Deep learning and tensorflow~~
+					* ~~Techniques/tools in data science~~
+					* ~~Cloud architecture for machine learning~~
+					---
+					### This talk is about
+					Some of things you might need to consider if you wanna bring your model to production based on our experience
+					---
+					### Intro
+					Our core competence: personalization
+					![Personalization](images/personalization.png)
+					---
+					### Intro
+					Our core competence: customer behaviour
+					![Browse](images/browse.png)
+					![Search](images/search.png)
+					---
+					### This involves
+					#### Data collection and/or processing
+					* Customer visits
+					* Customer characteristics
+						* Favourite shelves
+						* Next best shelves
+						* Interest in kid, pet, ...
+						* Promo lover
+						* ...
+					---
+					### Why the talk?
+					#### Data science is gaining more traction within bol.com
+					* More teams require data science within bol.com:
+					* Personalization, e.g. Team 2a
+					* Recommendation, e.g. Team Reco
+					* Advertisement and Attribution, e.g. Team SmartAds
+					* Offer, e.g. Team Best Offer
+					* ...
+					---
+					### Why the talk?
+					#### Cloud allows scalable data collection
+					* Processing
+						* Google Dataflow
+						* Google Dataproc: Hadoop, Spark/Pyspark, Flink, etc.
+						* Google Kubernetes Engine: Flink, etc.
+					* Storage and messaging system: Google PubSub, Google BigQuery, Google BigTable, Google Cloud Storage
+					---
+					### Why the talk?
+					#### Cloud allows scalable model training
+					* Google Dataflow: e.g. generating favourite shelves per customer
+					* Google Dataproc: e.g. mining frequent items with FPGrowth in Pyspark
+					* Google Kubernetes Engine: e.g. training prioritization engine in Python
+					* ...
+					---
+					### Why the talk?
+					In short, we (will) have way more ML models and/or ML driven projects in the future
+					> Not only Boukje is bol customer, but Boukje (intelligent) butler is bol customer
+
+					*-- Boukje Taphoorn (CMO bol.com)*
+					---
+					### What is ML model?
+					*Statistical models which describe data
+					*Mathematical models which represent a real-world process
+					*Data models which show patterns
+					> Model artifact that is created by the training process
+
+					*-- Amazon Machine Learning Dev. Guide*
+				</section>
+				<section>
+					<h3>ML Lifecycle</h3>
+					<p class="fragment fade-in" style="text-align: left"> => Hypotheses</p>
+					<p class="fragment fade-in" style="text-align: left"> => Feature engineering, KPI, and data collection <i>if needed</i></p>
+					<p class="fragment fade-in" style="text-align: left"> => Feature selection, model training, evaluation, and selection</p>
+					<p class="fragment fade-in" style="text-align: left"> => Model deployment for inference</p>
+					<p class="fragment fade-in" style="text-align: left"> => Experimentation</p>
+					<aside class="notes">
+						<ul>
+							<li>Feature enginering:
+								<ul>
+									<li>Brainstorming or testing features</li>
+									<li>Deciding what features to create</li>
+									<li>Creating features</li>
+									<li>Checking how the features work with your model</li>
+									<li>Improving your features if needed</li>
+									<li>Go back to brainstorming/creating more features until the work is done.</li>
+								</ul>
+							<li>KPI: CTR, revenue, derivative construct?</li>
+							<li>Data collection</li>
+							<li>Feature selection: consider not all available features?</li>
+							<li>Model training:
+								<ul>
+									<li>Model evaluation: more data, more features, different model?</li>
+									<li>Model selection</li>
+								</ul>
+							<li>Model deployment for inference</li>
+							<li>Experiments: accept/reject null hypothesis</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Feature engineering, KPI, and data collection</h3>
+					<p class="fragment fade-in" style="text-align: left">Lesson 1: Brainstorm with people of different roles!</p>
+					<p class="fragment fade-in" style="text-align: left"><img alt="Features" src="images/features.png" style="min-height:100%;min-width:100%;"/></p>
+					<aside class="notes">
+						You can list potential features, what are currently available, what are not (require additional works to gather them)
+					</aside>
+				</section>
+				<section>
+					<h3>Feature engineering, KPI, and data collection</h3>
+					<p class="fragment fade-in" style="text-align: left">Lesson 2: Don't assume data are readily available!</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 3: Make sure you have access to the data you need</p>
+					<aside class="notes">
+						Lesson 2: Based on your list of what you know, you might need to recheck if it's the case. If data is not available, you need to ask data owner if they can extend it? Or if it is yours, then you need to extend it.
+						Also, most likely you'll need to perform data preprocessing for both training and prediction/inference
+						Lesson 3: Don't underestimate this! Sometimes it takes time and before long, you are already at half of the sprint with blocked user stories
+					</aside>
+				</section>
+				<section>
+					<h3>Feature selection, model training, evaluation, and selection</h3>
+					<p class="fragment fade-in" style="text-align: left">Lesson 4: Make sure features are available for both training and prediction</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 5: Make sure features are aligned for both training and prediction</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 6: Promote independent yet close-knit collaboration between engineers and data scientists (Nice to Have)</p>
+					<aside class="notes">
+						<ul>
+							<li>Lesson 4: Collaborate well, discuss on how to get features offline for training and online for inference, and see if it's even possible</li>
+							<li>Lesson 5: Features should have gone through the same preprocessing: same scaling, same order, etc</li>
+							<li>Lesson 6: For instance, provide abstraction on infrastructure and orchestration complexity as much as possible</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Model deployment for inference</h3>
+					<p class="fragment fade-in" style="text-align: left"><b>Lesson 5: Make sure features are aligned for both training and prediction</b></p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 7: Make sure you choose performing framework for serving/inference</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 8: Make sure you test thoroughly</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 9: Invest on performance</p>
+					<aside class="notes">
+						<ul>
+							<li>Lesson 5: Features should have gone through the same preprocessing: same scaling, same order, etc</li>
+							<li>Lesson 7: if you pickled out your model, either you transform into Java or choose scalable python Framework: FastAPI based on asyncio. Another talk about this? packaging, deps management, etc.</li>
+							<li>Lesson 8: Perform prediction/inference by using training, test, newly seen data, invalid data to see if it gives you a correct scale and behaviour.</li>
+							<li>Lesson 9: Mimic real load.</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Model deployment for inference</h3>
+					<p class="fragment fade-in" style="text-align: left">Lesson 10: Think about fallback scenario/response if somehow model is unreachable</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 11: Measure everything</p>
+					<aside class="notes">
+						<ul>
+							<li>Lesson 10: This is important to identify if data you're collecting during experiment is sane</li>
+							<li>Lesson 11: Getting feedback:
+								<ul>
+									<li>establish a request scope event identifier for each prediction and store both the features and prediction. This way you can re-evaluate your model and collate your features/prediction with other measurement e.g. slot in WSP</li>
+									<li>track your model by tagging and propagate your tagging to your consumer also using the same identifier. Also, annotate fallback scenario, so you can distinguish them.</li>
+									<li>if you're working with WSP: look at m2 schema and see if you can add some information to m2</li>
+								</ul>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Example of measurement</h3>
+					<img alt="Satori JSON" src="images/json%20satori.png" width="40%" style="float: left"/><br/>
+					<img alt="WSP Satori Slot" src="images/slot%20wsp.png" width="50%" style="float: right"/>
+				</section>
+				<section>
+					<h3>Example of measurement</h3>
+					<img alt="Prediction OCTO" src="images/Prediction.png" width="80%"/>
+					<img alt="Satori M2" src="images/Satori.png" width="80%"/>
+				</section>
+				<section>
+					<h3>Experiments</h3>
+					<p>You run it, you measure it, you conclude it, and ...</p>
+					<p class="fragment fade-in" style="text-align: left">Lesson 12: Make sure everything is reproducible and repeatable</p>
+				</section>
+				<section data-markdown data-separator="---">
+					### In short
+					1. Plan ahead with data and features for training and prediction
+					2. Test thoroughly on data-set and system performance
+					3. Measure everything
+					4. Have fun
+					5. Repeat
+					---
+					# Thank you
+				</section>
 			</div>
 		</div>
 
