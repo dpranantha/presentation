@@ -36,8 +36,8 @@ As we embrace data science mode in our organization, it's good to know common ob
 
 ## Presentation
 
-* [Article](https://dev.to/aspittel/learning-css-through-creating-art-9i7)
-* [Half Hour Long Presentation](https://www.alispit.tel/css-art-presentation/#/intro)
+* [Article]()
+* [Half Hour Long Presentation]()
 
 
 Work with python:
@@ -124,8 +124,8 @@ This talk will provide you a working example of measuring every unit of your exp
 
 ## Presentation
 
-* [Article](https://dev.to/aspittel/learning-css-through-creating-art-9i7)
-* [Half Hour Long Presentation](https://www.alispit.tel/css-art-presentation/#/intro)
+* [Article]()
+* [Half Hour Long Presentation]()
 
 ## Delivered At
 
