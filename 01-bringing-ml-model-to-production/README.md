@@ -39,34 +39,27 @@ As we embrace data science mode in our organization, it's good to know common ob
 * [Half Hour Long Presentation](https://dpranantha.github.io/presentation/01-bringing-ml-model-to-production/index.html#/)
 
 
-Work with python:
-
-* Proper dependency management and packaging: https://johnfraney.ca/posts/2019/03/06/pipenv-poetry-benchmarks-ergonomics/
-* Manage end-to-end ML lifecycle https://mlflow.org/docs/latest/index.html
-* Other sources 
-  * https://towardsdatascience.com/all-machine-learning-models-explained-in-6-minutes-9fe30ff6776a
-
 Lifecycle:
 
 1. Before model training:
-- Hypotheses
-- Feature engineering, KPI, and Data collection IF needed
-    - Brainstorming or testing features;
-    - Deciding what features to create;
-    - Creating features;
-    - Checking how the features work with your model;
-    - Improving your features if needed;
-    - Go back to brainstorming/creating more features until the work is done.
+    - Hypotheses
+    - Feature engineering, KPI, and Data collection IF needed
+        - Brainstorming or testing features;
+        - Deciding what features to create;
+        - Creating features;
+        - Checking how the features work with your model;
+        - Improving your features if needed;
+        - Go back to brainstorming/creating more features until the work is done.
 2. During model training:
-- Feature selection
-    - consider not all available features?
-- Model training
-- Model evaluation: more data, more features, different model?
-- Model selection
+    - Feature selection
+        - consider not all available features?
+    - Model training
+    - Model evaluation: more data, more features, different model?
+    - Model selection
 3. After model training:
-- Model deployment for inference
+    - Model deployment for inference
 4. Experiments:
-- Accept/Reject null hypothesis
+    - Accept/Reject null hypothesis
 
 Lessons:
 1. Make sure features are available for both training and prediction
@@ -78,7 +71,14 @@ Lessons:
    - prediction: use training data
    - performance test: mimic real-time request loads 
 
-## Planned to be delivered At
+Notes on working with Python:
+
+* Proper dependency management and packaging: https://johnfraney.ca/posts/2019/03/06/pipenv-poetry-benchmarks-ergonomics/
+* Manage end-to-end ML lifecycle https://mlflow.org/docs/latest/index.html
+* Other sources: 
+  * https://towardsdatascience.com/all-machine-learning-models-explained-in-6-minutes-9fe30ff6776a
+
+## Plan to be delivered at
 
 * Bol.com Space Summit 2020
 
@@ -118,10 +118,35 @@ This talk will provide you a working example of measuring every unit of your exp
 * [Article]()
 * [Half Hour Long Presentation]()
 
-## Planned to be delivered At
+## Plan to be delivered at
 
 * Bol.com Space Summit 2020
 
+# Topic 3.  REST API for exposing predictive models: dependency management, tips/tricks of deployment, framework, performance
+## Abstract
+TODO
 
+## Talk Description
+### Objectives:
+- As a team who had deployed and tested several models, we'd like to share our technique in creating performing REST API
 
+### What we will cover:
+1. What you'll NOT learn from this talk:  
+    - ~~Machine learning model~~
+    - ~~Machine learning algorithm~~
+    - ~~Micro-services and RESTful API architecture~~
+2. What you'll learn from this talk:
+    - TBD
+    
+### Background/ Context/ Why This Talk: 
+TBD
+
+## Presentation
+
+* [Article]()
+* [Half Hour Long Presentation]()
+
+## Plan to be delivered at
+
+* Bol.com Space Summit 2020
 
