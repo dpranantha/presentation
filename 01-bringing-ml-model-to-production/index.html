@@ -25,13 +25,13 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+				<section>
+					<h3>Bringing predictive models to production:</h3>
+					<h3>Lesson learned</h3>
+					<p>Danu Pranantha</p>
+					<img alt="Team 2a" src="images/logo2a_large.jpg" width="20%" style="alignment: center"/><br/>
+				</section>
 				<section data-markdown data-separator="---">
-					### Bringing predictive models to production:
-					### Lessons learned!
-					Danu Pranantha
-
-					Team 2a
-					---
 					### Objectives
 					Share **lessons learned** when we brought our model to production
 					---
@@ -46,7 +46,9 @@
 					* ~~Cloud architecture for machine learning~~
 					---
 					### This talk is about
-					Some of things you might need to consider if you wanna bring your model to production based on our experience
+					Some of things you might need to consider if you need to bring your model to production
+
+					** based on our experience
 					---
 					### Intro
 					Our core competence: personalization
@@ -70,11 +72,11 @@
 					### Why the talk?
 					#### Data science is gaining more traction within bol.com
 					* More teams require data science within bol.com:
-					* Personalization, e.g. Team 2a
-					* Recommendation, e.g. Team Reco
-					* Advertisement and Attribution, e.g. Team SmartAds
-					* Offer, e.g. Team Best Offer
-					* ...
+						* Personalization, e.g. Team 2a
+						* Recommendation, e.g. Team Reco
+						* Advertisement and Attribution, e.g. Team SmartAds
+						* Offer, e.g. Team Best Offer
+						* ...
 					---
 					### Why the talk?
 					#### Cloud allows scalable data collection
@@ -93,27 +95,38 @@
 					---
 					### Why the talk?
 					In short, we (will) have way more ML models and/or ML driven projects in the future
-					> Not only Boukje is bol customer, but Boukje (intelligent) butler is bol customer
-
-					*-- Boukje Taphoorn (CMO bol.com)*
-					---
-					### What is ML model?
-					* Statistical models which describe data
-					* Mathematical models which represent a real-world process
-					* Data models which show patterns
-					> Model artifact that is created by the training process
-
-					*-- Amazon Machine Learning Dev. Guide*
+					> Not only Boukje is bol customer, but Boukje (intelligent) butler is bol customer *-- Boukje Taphoorn (ID2020)*
+				</section>
+				<section>
+					<h3>What is model?</h3>
+					<img class="fragment fade-in-then-out current-fragment" alt="Model" src="images/model.jpg" width="35%"/>
+				</section>
+				<section>
+					<h3>What is model?</h3>
+					<ul>
+						<li class="fragment fade-up">Statistical models which describe data</li>
+						<li class="fragment fade-up">Mathematical models which represent a real-world process</li>
+						<li class="fragment fade-up">Data models which show patterns</li>
+					</ul>
+					<blockquote  class="fragment fade-up">Model artifact that is created by a training process. -- Amazon Machine Learning Dev. Guide</blockquote>
 				</section>
 				<section>
 					<h3>ML Lifecycle</h3>
-					<p class="fragment fade-in" style="text-align: left"> => Hypotheses</p>
-					<p class="fragment fade-in" style="text-align: left"> => Feature engineering, KPI, and data collection <i>if needed</i></p>
-					<p class="fragment fade-in" style="text-align: left"> => Feature selection, model training, evaluation, and selection</p>
-					<p class="fragment fade-in" style="text-align: left"> => Model deployment for inference</p>
-					<p class="fragment fade-in" style="text-align: left"> => Experimentation</p>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Hypotheses</li>
+						<li class="fragment fade-right" style="text-align: left">KPI, feature engineering, and data collection <i>if needed</i></li>
+						<li class="fragment fade-right" style="text-align: left">Feature selection, model training, evaluation, and selection</li>
+						<li class="fragment fade-right" style="text-align: left">Model deployment for inference</li>
+						<li class="fragment fade-right" style="text-align: left">Experimentation</li>
+					</ul>
 					<aside class="notes">
 						<ul>
+							<li>Hypotheses:
+								<ul>
+									<li>model learned from data works better in term of revenue compared to static weight</li>
+									<li>model X has better CTR than model Y due to additional feature Z</li>
+								</ul>
+							</li>
 							<li>Feature enginering:
 								<ul>
 									<li>Brainstorming or testing features</li>
@@ -123,8 +136,8 @@
 									<li>Improving your features if needed</li>
 									<li>Go back to brainstorming/creating more features until the work is done.</li>
 								</ul>
-							<li>KPI: CTR, revenue, derivative construct?</li>
-							<li>Data collection</li>
+							<li>KPI: CTR, revenue, revenue/order, etc, .. derivative construct?</li>
+							<li>Data collection: from where, how, training vs. inference</li>
 							<li>Feature selection: consider not all available features?</li>
 							<li>Model training:
 								<ul>
@@ -137,92 +150,248 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Feature engineering, KPI, and data collection</h3>
-					<p class="fragment fade-in" style="text-align: left">Lesson 1: Brainstorm with people of different roles!</p>
-					<p class="fragment fade-in" style="text-align: left"><img alt="Features" src="images/features.png" style="min-height:100%;min-width:100%;"/></p>
+					<h3>KPI, feature engineering, and data collection</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 1: Brainstorm with people of different roles!</li>
+					</ul>
+					<p class="fragment fade-right" style="text-align: left"><img alt="Features" src="images/features.png" style="min-height:100%;min-width:100%;"/></p>
 					<aside class="notes">
-						You can list potential features, what are currently available, what are not (require additional works to gather them)
+						<ul>
+							<li>Along with others, you can list potential features, what are currently available, what are not (require additional works to gather them)</li>
+							<li>Reason why the features can be good indicators of what you're trying to achieve</li>
+							<li>Order by importance</li>
+						</ul>
 					</aside>
 				</section>
 				<section>
-					<h3>Feature engineering, KPI, and data collection</h3>
-					<p class="fragment fade-in" style="text-align: left">Lesson 2: Don't assume data are readily available!</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 3: Make sure you have access to the data you need</p>
+					<h3>KPI, feature engineering, and data collection</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 2: Don't assume that the source data are readily available!</li>
+					</ul>
 					<aside class="notes">
-						Lesson 2: Based on your list of what you know, you might need to recheck if it's the case. If data is not available, you need to ask data owner if they can extend it? Or if it is yours, then you need to extend it.
-						Also, most likely you'll need to perform data preprocessing for both training and prediction/inference
-						Lesson 3: Don't underestimate this! Sometimes it takes time and before long, you are already at half of the sprint with blocked user stories
+						<ul>
+							<li>Based on your shortlist, you might need to recheck if the data is available to get the features</li>
+							<li>If data is not available, you need to ask data owner if they can extend it? Or if it is yours, then you need to extend it yourself</li>
+							<li>Most likely you'll need to perform data pre-processing for deriving features for both training and prediction/inference</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>KPI, feature engineering, and data collection</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 3: Make sure you have access to the source data you need</li>
+					</ul>
+					<aside class="notes">
+						Don't underestimate this! Sometimes it takes time and before long, you are already at half of the sprint with blocked user stories
 					</aside>
 				</section>
 				<section>
 					<h3>Feature selection, model training, evaluation, and selection</h3>
-					<p class="fragment fade-in" style="text-align: left">Lesson 4: Make sure features are available for both training and prediction</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 5: Make sure features are aligned for both training and prediction</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 6: Promote independent yet close-knit collaboration between engineers and data scientists (Nice to Have)</p>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 4: Make sure features are available for both training and prediction</li>
+					</ul>
 					<aside class="notes">
 						<ul>
-							<li>Lesson 4: Collaborate well, discuss on how to get features offline for training and online for inference, and see if it's even possible</li>
-							<li>Lesson 5: Features should have gone through the same preprocessing: same scaling, same order, etc</li>
-							<li>Lesson 6: For instance, provide abstraction on infrastructure and orchestration complexity as much as possible</li>
+							<li>Think how to get features for both offline for training and online for inference, and check if it's even possible</li>
+							<li>Sometimes it's easy to compute the features offline, but not online, for instance: real-time features such as session duration, current page dwelling</li>
+							<li>Is the feature really adding value compared to the complexity it introduced? In other word, is it worth it?</li>
+							<li>Is it necessary to be precise or is it okay to have some variance?</li>
+							<li>What if sometimes the value of a feature cannot be calculated? e.g., null</li>
+							<li>What if the value of a feature can be really odd? e.g., outliers</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Feature selection, model training, evaluation, and selection</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 5: Align features for both training and inference</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Features for both training and inference should have gone through the same pre-processing step: same scaling, same ordering, same transformation</li>
+							<li>As mentioned before, it can be complex/expensive to compute real-time features and hence adding delay to inference</li>
+							<li>Keep asking: is it worth it? Is there any other alternatives</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Feature selection, model training, evaluation, and selection</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 6: Model versioning</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Useful to version your model based on e.g., timestamp</li>
+							<li>Not only for scheduled training and loading, but also adding features</li>
+							<li>In case training data is not representative, you can just revert to previous version</li>
 						</ul>
 					</aside>
 				</section>
 				<section>
 					<h3>Model deployment for inference</h3>
-					<p class="fragment fade-in" style="text-align: left"><b>Lesson 5: Make sure features are aligned for both training and prediction</b></p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 7: Make sure you choose performing framework for serving/inference</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 8: Make sure you test thoroughly</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 9: Invest on performance</p>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 5: Align features for both training and inference</li>
+					</ul>
 					<aside class="notes">
 						<ul>
-							<li>Lesson 5: Features should have gone through the same preprocessing: same scaling, same order, etc</li>
-							<li>Lesson 7: if you pickled out your model, either you transform into Java or choose scalable python Framework: FastAPI based on asyncio. Another talk about this? packaging, deps management, etc.</li>
-							<li>Lesson 8: Perform prediction/inference by using training, test, newly seen data, invalid data to see if it gives you a correct scale and behaviour.</li>
-							<li>Lesson 9: Mimic real load.</li>
+							<li>Reiterate: features for both training and inference should have gone through the same pre-processing step: same scaling, same ordering, same transformation</li>
 						</ul>
 					</aside>
 				</section>
 				<section>
 					<h3>Model deployment for inference</h3>
-					<p class="fragment fade-in" style="text-align: left">Lesson 10: Think about fallback scenario/response if somehow model is unreachable</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 11: Measure everything</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 12: Manage your model well</p>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 7: Choose performing framework for serving/inference</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="FastAPI Framework" src="images/FastAPI.png" style="width: 50%"/>
 					<aside class="notes">
 						<ul>
-							<li>Lesson 10: This is important to identify if data you're collecting during experiment is sane</li>
-							<li>Lesson 11: Getting feedback:
+							<li>If you pickled out your model, either you transform into Java or choose scalable Python Framework. I recommend FastAPI, a high performance framework which exploits asyncio</li>
+							<li>For Python, there are lot of different packaging, deps management, virtualenv, etc. I'd recommend poetry which is easier to use, maintain, and update deps than pipenv</li>
+							<li>If your model is yet another data: frequency tables, probability tables, etc, it's better to use Java/Kotlin</li>
+							<li>If your model is yet another data but a lot and can be keyed, then bigtable/cassandra can be an alternative to store the data</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 8: You can't test enough!</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Test thoroughly for any step in the pipeline, by asking questions</li>
+							<li>Do we feed correct features during training? scale, value, etc.</li>
+							<li>Do we feed correct features during inference? scale, value, etc. what will happen if certain features are not available?</li>
+							<li>Perform inference by using training, test, newly seen data, invalid data to see if it gives you a correct scale and behaviour.</li>
+							<li>How the model will behave in case missing features due to, e.g., performance issue of feature feeder? How it should be handled?</li>
+							<li>What if the model or service encapsulating the  model is slow? what do we suggest to consumer the fallback inference values?</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 9: Provide instruction for fallback scenario if model is unreachable</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="Octo" src="images/Octo.png" style="width: 21%"/>
+					<img class="fragment fade-up" alt="Octo inference" src="images/Octo-inference.png" style="width: 25%"/>
+					<img class="fragment fade-up" alt="Octo fallback" src="images/Octo-fallback.png" style="width: 21%"/>
+					<aside class="notes">
+						<ul>
+							<li>As mentioned before, service can be slow/down, features is N/A, model inference is slow</li>
+							<li>Give a proper instruction on what possible fallback values</li>
+							<li>Another important aspect is that if you capture feedback from model, make sure you can identify if data you're collecting during experiment is sane</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 10: Measure as much as you can</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="Satori JSON" src="images/json%20satori.png" width="40%" style="float: left"/>
+					<img class="fragment fade-up" alt="WSP Satori Slot" src="images/slot%20wsp.png" width="55%" style="float: right"/>
+					<aside class="notes">
+						<ul>
+							<li>Getting feedback:
 								<ul>
-									<li>establish a request scope event identifier for each prediction and store both the features and prediction. This way you can re-evaluate your model and collate your features/prediction with other measurement e.g. slot in WSP</li>
-									<li>track your model by tagging and propagate your tagging to your consumer also using the same identifier. Also, annotate fallback scenario, so you can distinguish them.</li>
-									<li>if you're working with WSP: look at m2 schema and see if you can add some information to m2</li>
+									<li>You need to be able to identify which prediction to which features to which slot to which event to which session. This way you can re-evaluate your model and collate your features/prediction with other measurement e.g. slot in WSP</li>
+									<li>One of ways is to track your model by tagging and propagate your tagging to your consumer. Also, as mentioned before, annotate fallback scenario, so you can distinguish them.</li>
+									<li>Filter incoming ab-tests and select only relevant ones to back-propagate.</li>
+									<li>If you need to record your model in WSP, look at m2 schema and see if you can add some information to m2</li>
 								</ul>
 						</ul>
 					</aside>
 				</section>
 				<section>
-					<h3>Example of measurement</h3>
-					<img alt="Satori JSON" src="images/json%20satori.png" width="40%" style="float: left"/><br/>
-					<img alt="WSP Satori Slot" src="images/slot%20wsp.png" width="50%" style="float: right"/>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li style="text-align: left">Lesson 10: Measure as much as you can</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="Prediction OCTO" src="images/Prediction.png" width="80%"/>
+					<img class="fragment fade-up" alt="Satori M2" src="images/Satori.png" width="80%"/>
+					<aside class="notes">
+						<ul>
+							<li>Getting feedback:
+								<ul>
+									<li>Top: measurements generated by model when it performs prediction</li>
+									<li>Bottom: measurements generated by service propagated to WSP and M2 measurement</li>
+									<li>Collate what are actually being shown and what are predicted, and how that affect the chosen KPI</li>
+								</ul>
+						</ul>
+					</aside>
+				</section>
+				<section contenteditable="true">
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 11: Backward compatibility</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>this is to make sure compatibility between features vs. model</li>
+							<li>we're still figuring it out: use switch/ab-test for both features and model to go live, perform incremental update: new feature that doesn't contribute to model until new model is deployed, etc.</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
-					<h3>Example of measurement</h3>
-					<img alt="Prediction OCTO" src="images/Prediction.png" width="80%"/>
-					<img alt="Satori M2" src="images/Satori.png" width="80%"/>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 12: Setup essential dashboards</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="Dashboard 1" src="images/dashboard1.png" style="width: 70%; float: top"/>
+					<img class="fragment fade-up" alt="Dashboard 3" src="images/dashboard2.png" style="width: 70%"/>
+					<img class="fragment fade-up" alt="Dashboard 4" src="images/dashboard3.png" style="width: 70%; float: bottom"/>
+					<aside class="notes">
+						<ul>
+							<li>functional (e.g., distribution of campaigns, how many fallback/unit of time), performance (e.g., req/res, resilience), and/or KPIs</li>
+							<li>useful to get insights on how does your model behave at certain times</li>
+							<li>useful to get insights on how does your model perform at certain times</li>
+							<li>useful to get insights on how does your model affect KPIs at certain times</li>
+							<li>Set KPIs dashboard can be</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Model deployment for inference</h3>
+					<ul>
+						<li class="fragment fade-right" style="text-align: left">Lesson 13: Invest on performance!</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Create a proper performance test which mimic real load</li>
+							<li>You will see how your model and system' behaviour in coping with the demand</li>
+							<li>You can then monitor your useful dashboard to tune your performance</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h3>Experiments</h3>
-					<p>You run it, you measure it, you conclude it, and ...</p>
-					<p class="fragment fade-in" style="text-align: left">Lesson 13: Make sure everything is reproducible and repeatable</p>
+					<ul>
+						<li>You train it, you deploy it, you run it, you measure it, you conclude it with a ...</li>
+					</ul>
+					<br/>
+					<img class="fragment fade-up" alt="Yes" src="images/yes.png" style="width: 30%; float: left"/>
+					<img class="fragment fade-up" alt="Yes" src="images/or.png" style="width: 30%"/>
+					<img class="fragment fade-up" alt="Improve" src="images/improve.png" style="width: 30%; float: right"/>
 				</section>
 				<section data-markdown data-separator="---">
-					### In short
+					### Conclusion
 					1. Plan ahead with data and features for training and prediction
-					2. Test thoroughly on data-set and system performance
-					3. Measure everything
-					4. Have fun
-					5. Repeat
-					---
-					# Thank you
+					2. Manage model training and also versioning
+					3. Deploy model with care, test thoroughly, create and monitor dashboards
+					4. Measure as much as you can
+					5. Have fun & Repeat!
+				</section>
+				<section>
+					<h2>Thank you!</h2>
+					<img alt="Thanks" src="images/model2.jpg" width="50%"/>
 				</section>
 			</div>
 		</div>
