@@ -9,7 +9,16 @@ Selective topics for Bol.com Space Summit 2020 for team 2a:
 
 # Topic 1. Bringing predictive models to Production
 ## Abstract
-TODO
+Providing an engaging customer experience is no longer optional but is instead, demanded by customers. The 5th edition of Salesforce "State of Marketing Report" reveals 
+that 60% of customers expect companies to step up in anticipating their needs. This involves a variety of ways such as, better pricing, personalized contents, intelligent chat-bot, 
+fast and reliable delivery; richer, seamless, and natural interactions, etc. One of ways to better customer experiences is becoming AI (artificial intelligence) driven company. 
+
+AI and its subset, Machine Learning (ML), provide avenues for delegating complex decisions to intelligent entities based on facts (data). 
+For instance, we create a model that predicts customers intention during visit based on historical visits. 
+Using cloud infrastructure, theoretically we can create and train various models and use them for various purposes within the company.
+
+Having several ML models in production, we would like to share our experiences in deploying models into production. We will provide a list of things you need to consider
+when you are planning to train a model and bring it to production.   
 
 ## Talk Description
 ### Objectives:

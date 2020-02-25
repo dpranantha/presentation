@@ -31,6 +31,18 @@
 					<p>Danu Pranantha</p>
 					<img alt="Team 2a" src="images/logo2a_large.jpg" width="20%" style="alignment: center"/><br/>
 				</section>
+				<section>
+					<h3>Abstract</h3>
+					<p style="font-size: medium; text-align: justify">Providing an engaging customer experience is no longer optional but is instead, demanded by customers. The 5th edition of Salesforce
+						<a href="https://www.salesforce.com/blog/2018/12/introducing-fifth-state-of-marketing-report.html">"State of Marketing Report"</a> reveals
+						that 60% of customers expect companies to step up in anticipating their needs. This involves a variety of ways such as, better pricing, personalized contents, intelligent chat-bot,
+						fast and reliable delivery; richer, seamless, and natural interactions, etc. One of ways to better customer experiences is becoming AI (artificial intelligence) driven company.</p>
+					<p style="font-size: medium; text-align: justify">AI and its subset, Machine Learning (ML), provide avenues for delegating complex decisions to intelligent entities based on facts (data).
+						For instance, we create a model that predicts customers intention during visit based on their historical visits.
+						Using cloud infrastructure, theoretically we can create and train various models and use them for various purposes within the company.</p>
+					<p style="font-size: medium; text-align: justify">Having several ML models in production, we would like to share our experiences in deploying models into production. We will provide a list of things you need to consider
+						when you are planning to train a model and bring it to production.</p>
+				</section>
 				<section data-markdown data-separator="---">
 					### Objectives
 					Share **lessons learned** when we brought our model to production
@@ -172,6 +184,7 @@
 						<ul>
 							<li>Based on your shortlist, you might need to recheck if the data is available to get the features</li>
 							<li>If data is not available, you need to ask data owner if they can extend it? Or if it is yours, then you need to extend it yourself</li>
+							<li>There are also GDPR-related questions: is it allowed? how long should we store the data? when should we delete them? etc.</li>
 							<li>Most likely you'll need to perform data pre-processing for deriving features for both training and prediction/inference</li>
 						</ul>
 					</aside>
@@ -357,7 +370,6 @@
 						</ul>
 					</aside>
 				</section>
-
 				<section>
 					<h3>Model deployment for inference</h3>
 					<ul>
