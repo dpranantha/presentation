@@ -36,8 +36,7 @@ As we embrace data science mode in our organization, it's good to know common ob
 
 ## Presentation
 
-* [Article]()
-* [Half Hour Long Presentation]()
+* [Half Hour Long Presentation](https://dpranantha.github.io/presentation/01-bringing-ml-model-to-production/index.html#/)
 
 
 Work with python:
@@ -71,23 +70,15 @@ Lifecycle:
 
 Lessons:
 1. Make sure features are available for both training and prediction
-2. Make sure features are aligned for both training and prediction: same scale, same order, etc
+2. Make sure features are aligned for both training and prediction
 3. Make sure you are able to track your model performance and think about what you need for improvement ahead
    - Make sure you tag your model which describes what kind of algo it was trained and to what purpose
 4. Make sure you choose performing framework for serving/inference
 5. Make sure you test thoroughly
    - prediction: use training data
    - performance test: mimic real-time request loads 
-6. Make sure everything is reproducible and repeatable
-7. Collaboration between DS and engineer in independent way
-   - Provide examples
-   - Provide abstraction on infrastructure and orchestration complexity as much as possible
 
-
-Notes:
-1. Boukje mentioned: she as a customer, but also her assistant
-
-## Delivered At
+## Planned to be delivered At
 
 * Bol.com Space Summit 2020
 
@@ -127,7 +118,7 @@ This talk will provide you a working example of measuring every unit of your exp
 * [Article]()
 * [Half Hour Long Presentation]()
 
-## Delivered At
+## Planned to be delivered At
 
 * Bol.com Space Summit 2020
 
